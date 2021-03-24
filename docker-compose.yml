@@ -22,7 +22,7 @@ services:
       POSTGRES_USER: 'party-haan'
       POSTGRES_PASSWORD: 'party-haan'
       POSTGRES_DB: 'party-haan-db'
-      JWT_SECRET_KEY: 'party-haan-secret-key'
+      SECRET_KEY: 'party-haan-secret-key'
     ports:
       - '3001:3001'
     networks:

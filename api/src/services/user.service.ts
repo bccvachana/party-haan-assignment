@@ -7,7 +7,7 @@ import db from '_db';
 import { PoolClient } from 'pg';
 import { isEmpty, omit } from 'lodash/fp';
 import { ApiError } from '_helpers/error';
-import { generateAccessToken, generateRefreshToken } from '_helpers/jwt';
+import { generateAccessToken, generateRefreshToken } from '_helpers/token';
 import { ICommonObject } from '_types/common.type';
 
 const register = async (

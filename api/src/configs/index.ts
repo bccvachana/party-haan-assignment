@@ -1,3 +1,3 @@
 export * from './db.config';
-export * from './jwt.config';
+export * from './key.config';
 export * from './server.config';

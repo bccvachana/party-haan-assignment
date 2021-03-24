@@ -29,8 +29,8 @@ router.post(
         accessToken,
         refreshToken,
       } = await userService.login(payload);
-      res.cookie('partyHaan-accessToken', accessToken, { httpOnly: true });
-      res.cookie('partyHaan-refreshToken', refreshToken, { httpOnly: true });
+      res.cookie('accessToken', accessToken, { httpOnly: true });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true });
       res.send({
         message: 'login successfully',
         user,

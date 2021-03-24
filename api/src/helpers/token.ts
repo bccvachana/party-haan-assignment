@@ -1,13 +1,21 @@
 import jwt from 'jsonwebtoken';
-import { jwtSecretKey } from '_configs';
+import cryptoJs from 'crypto-js';
+import { secretKey } from '_configs';
 import { IUser } from '_types/user.type';
+
+export const generateKey = async (
+  rawKey: string,
+): Promise<string> => cryptoJs.HmacSHA256(
+  rawKey,
+  secretKey,
+).toString();
 
 export const generateAccessToken = async (
   { id }: IUser,
 ): Promise<string> => jwt.sign({
   type: 'access',
   userId: id,
-}, jwtSecretKey, {
+}, secretKey, {
   expiresIn: 15 * 60, // 15 mins
 });
 
@@ -16,5 +24,5 @@ export const generateRefreshToken = async (
 ): Promise<string> => jwt.sign({
   type: 'refresh',
   userId: id,
-  key: id + password,
-}, jwtSecretKey);
+  key: await generateKey(id + password),
+}, secretKey);
