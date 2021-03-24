@@ -1,0 +1,17 @@
+@import 'styles/_var';
+
+.logo {
+  position: relative;
+  @include flex(row, space-between);
+
+  .logoDuck {
+    width: 32.8%;
+  }
+
+  .logoText {
+    width: 61.2%;
+    position: absolute;
+    top: 20.8%;
+    right: 0;
+  }
+}

@@ -1,0 +1,26 @@
+@import 'styles/_colors';
+@import 'styles/_fonts';
+
+$pageMaxWidth: 480px;
+$headerHeight: 60px;
+$pageHorizontalPadding: 16px;
+
+@mixin flex($direction: row, $justify: center, $align: center, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin childrenNotFirstChild {
+  > *:not(:first-child) {
+    @content;
+  }
+}
+
+@mixin childrenNotLastChild {
+  > *:not(:last-child) {
+    @content;
+  }
+}
