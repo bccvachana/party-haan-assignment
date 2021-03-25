@@ -1,9 +1,14 @@
 import { FC } from 'react';
+import { useHistory } from 'react-router-dom';
 import { PageContainer, Logo } from 'components';
+import { useHeader } from 'hooks';
 import styles from './Login.module.scss';
 
 const Login: FC = () => {
-  console.log('Login');
+  useHeader({
+    noHeader: true,
+  });
+  const { push } = useHistory();
 
   return (
     <PageContainer
@@ -35,6 +40,7 @@ const Login: FC = () => {
       <button
         className={`${styles.button} ${styles.registerButton}`}
         type="button"
+        onClick={() => push('/register')}
       >
         สร้างบัญชีผู้ใช้ใหม่
       </button>

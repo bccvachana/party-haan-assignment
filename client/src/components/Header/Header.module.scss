@@ -1,17 +1,47 @@
 @import 'styles/_var';
 
+.body {
+  padding-bottom: 0.5rem;
+  overflow-x: hidden;
+}
+
 .header {
   width: 100%;
   height: $headerHeight;
-  padding: 0 $pageHorizontalPadding;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
+  padding: 0 $pagePadding;
   background-color: $color-white;
   box-shadow: 0px 0px 4px #b4b4b4;
   font-size: 19px;
   font-weight: 600;
   line-height: 1;
-  @include flex($justify: flex-start);
+  @include flex($justify: space-between);
+
+  button {
+    background-color: transparent;
+    @include flex;
+  }
+}
+
+.placeHolder {
+  height: $headerHeight;
+  flex-shrink: 0;
+}
+
+.backButtonAndTitle {
+  @include flex;
+}
+
+.backButton {
+  margin-right: 34px;
+
+  img {
+    height: 15px;
+  }
+}
+
+.logoutButton {
+  img {
+    height: 15px;
+    opacity: 0.25;
+  }
 }

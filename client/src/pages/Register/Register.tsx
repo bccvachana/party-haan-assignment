@@ -1,9 +1,13 @@
 import { FC } from 'react';
 import { PageContainer } from 'components';
+import { useHeader } from 'hooks';
 import styles from './Register.module.scss';
 
 const Register: FC = () => {
-  console.log('Register');
+  useHeader({
+    title: 'สร้างบัญชีผู้ใช้',
+    noLogoutButton: true,
+  });
 
   return (
     <PageContainer

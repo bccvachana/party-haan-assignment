@@ -1,0 +1,83 @@
+@import 'styles/_var';
+
+.container {
+  padding: $pagePadding ($pagePadding / 2) 88px;
+}
+
+.body {
+  margin: ($pagePadding / -2);
+  @include flex(row, flex-start, flex-start, wrap);
+  align-content: flex-start;
+}
+
+.partyContainer {
+  width: calc((100% - (2 * #{$pagePadding})) / 2);
+  margin: ($pagePadding / 2);
+  flex-shrink: 0;
+  position: relative;
+}
+
+.party {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 1px 2px #b4b4b4;
+  overflow: hidden;
+}
+
+.partyImg {
+  background-color: lightgray;
+}
+
+.partyInfo {
+  > * {
+    padding: ($pagePadding / 2);
+  }
+}
+
+.partyTitle {
+  width: 100%;
+  height: 53px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: 600;
+  overflow-y: hidden;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.partyDetail {
+  @include flex($justify: space-between);
+}
+
+.partyGroup {
+  flex-shrink: 0;
+  font-size: 12px;
+  line-height: 1;
+  @include flex;
+
+  img {
+    height: 17px;
+    margin-right: ($pagePadding / 2);
+  }
+}
+
+.partyButton {
+  width: 55%;
+  max-width: 85px;
+  padding: ($pagePadding / 2);
+  background-color: $color-primary;
+  color: $color-white;
+  border-radius: 8px;
+}
+
+.partyBadge {
+  width: 50px;
+  height: 24px;
+  position: absolute;
+  top: $pagePadding;
+  right: -3px;
+  background-color: #7ac874;
+  color: $color-white;
+  border-radius: 50px 0 0 50px;
+  @include flex;
+}

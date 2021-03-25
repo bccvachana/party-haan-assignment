@@ -1,0 +1,5 @@
+@import 'styles/_var';
+
+.body {
+  @include flex(column, flex-start);
+}

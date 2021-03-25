@@ -1,10 +1,54 @@
+import { usePage } from 'hooks';
 import { FC } from 'react';
+import { useHistory } from 'react-router-dom';
+import ArrowBackIcon from 'assets/images/arrow-back-icon.svg';
+import LogoutIcon from 'assets/images/logout-icon.svg';
+import { FixedPageContainer } from 'components';
 import styles from './Header.module.scss';
 
-const Header: FC = () => (
-  <div className={styles.header}>
-    สร้างบัญชีผู้ใช้ใหม่
-  </div>
-);
+const Header: FC = () => {
+  const {
+    header: {
+      title,
+      noBackButton,
+      noLogoutButton,
+      noHeader,
+    },
+  } = usePage();
+  const { goBack } = useHistory();
+
+  return !noHeader ? (
+    <>
+      <FixedPageContainer
+        bodyClassName={styles.body}
+      >
+        <div className={styles.header}>
+          <div className={styles.backButtonAndTitle}>
+            {!noBackButton && (
+              <button
+                className={styles.backButton}
+                type="button"
+                onClick={goBack}
+              >
+                <img src={ArrowBackIcon} alt="arrow-back-icon" />
+              </button>
+            )}
+            {title}
+          </div>
+          {!noLogoutButton && (
+            <button
+              className={styles.logoutButton}
+              type="button"
+              onClick={goBack}
+            >
+              <img src={LogoutIcon} alt="logout-icon" />
+            </button>
+          )}
+        </div>
+      </FixedPageContainer>
+      <div className={styles.placeHolder} />
+    </>
+  ) : <></>;
+};
 
 export default Header;

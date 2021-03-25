@@ -1,9 +1,10 @@
 @import 'styles/_colors';
 @import 'styles/_fonts';
 
+$pageMinWidth: 320px;
 $pageMaxWidth: 480px;
 $headerHeight: 50px;
-$pageHorizontalPadding: 1rem;
+$pagePadding: 1rem;
 
 @mixin flex($direction: row, $justify: center, $align: center, $wrap: nowrap) {
   display: flex;

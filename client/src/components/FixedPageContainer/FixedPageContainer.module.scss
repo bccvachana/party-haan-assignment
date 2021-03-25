@@ -1,0 +1,23 @@
+@import 'styles/_var';
+
+.container {
+  height: 100%;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+
+  @media only screen and (max-width: $pageMinWidth) {
+    align-items: flex-start;
+  }
+}
+
+.body {
+  min-width: $pageMinWidth;
+  max-width: $pageMaxWidth;
+  padding-bottom: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
