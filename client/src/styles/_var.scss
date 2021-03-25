@@ -2,8 +2,8 @@
 @import 'styles/_fonts';
 
 $pageMaxWidth: 480px;
-$headerHeight: 60px;
-$pageHorizontalPadding: 16px;
+$headerHeight: 50px;
+$pageHorizontalPadding: 1rem;
 
 @mixin flex($direction: row, $justify: center, $align: center, $wrap: nowrap) {
   display: flex;

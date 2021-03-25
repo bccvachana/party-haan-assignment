@@ -1,7 +1,9 @@
 @import 'styles/_var';
 
+$inputPadding: 20px;
+
 .pageContainer {
-  padding-top: 24px;
+  padding-top: 16px;
   background-color: $color-primary;
   color: $color-white;
   text-align: center;
@@ -13,59 +15,58 @@
 
 .logo {
   width: 100%;
-  max-width: 366px;
-  margin-bottom: 28px;
+  max-width: 307px;
+  margin-bottom: 24px;
 }
 
 .title {
-  margin-bottom: 60px;
-  font-size: 22px;
+  margin-bottom: 48px;
+  font-size: 20px;
   line-height: 1;
 }
 
 .inputContainer {
   width: 100%;
-  max-width: 400px;
+  max-width: 340px;
   position: relative;
-  $inputPadding: 24px;
 
   input,
   input:hover,
   input:focus {
     width: 100%;
-    height: 56px;
-    padding: 0 ($inputPadding + 3px);
+    height: 48px;
+    padding: 0 ($inputPadding + 2px);
     background-color: transparent;
     border: 2px solid $color-white;
-    border-radius: 56px;
+    border-radius: 48px;
   }
 
   .inputLabel {
-    padding: 0 5px;
+    padding: 0 4px;
     position: absolute;
-    top: -16px;
+    top: -14px;
     left: $inputPadding;
     background-color: $color-primary;
   }
 
   &.emailInput {
-    margin-bottom: 35px;
+    margin-bottom: 30px;
   }
 
   &.passwordInput {
-    margin-bottom: 60px;
+    margin-bottom: 50px;
   }
 }
 
 .button {
   width: 100%;
-  height: 48px;
-  max-width: 400px;
-  border-radius: 48px;
-  font-size: 18px;
+  height: 42px;
+  max-width: 340px;
+  border-radius: 42px;
+  font-size: 16px;
 
   &.loginButton {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     background-color: #8fce7f;
   }
 
