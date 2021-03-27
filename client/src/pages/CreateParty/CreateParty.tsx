@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PageContainer } from 'components';
+import { Input, PageContainer } from 'components';
 import { useHeader } from 'hooks';
 import styles from './CreateParty.module.scss';
 
@@ -10,7 +10,19 @@ const CreateParty: FC = () => {
 
   return (
     <PageContainer bodyClassName={styles.body}>
-      CreateParty
+      <Input
+        label="ชื่อปาร์ตี้"
+      />
+      <Input
+        label="จำนวนคนที่ขาด"
+        type="number"
+      />
+      <button
+        className={styles.button}
+        type="button"
+      >
+        สร้างปาร์ตี้
+      </button>
     </PageContainer>
   );
 };

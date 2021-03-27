@@ -29,12 +29,23 @@ router.post(
         accessToken,
         refreshToken,
       } = await userService.login(payload);
-      res.cookie('accessToken', accessToken, { httpOnly: true });
-      res.cookie('refreshToken', refreshToken, { httpOnly: true });
+      res.cookie('accessToken', accessToken, { httpOnly: true, secure: true, sameSite: 'none' });
+      res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'none' });
       res.send({
         message: 'login successfully',
         user,
       });
+    },
+  ),
+);
+
+router.post(
+  '/logout',
+  asyncWrapper(
+    async (req: Request, res: Response) => {
+      res.clearCookie('accessToken');
+      res.clearCookie('refreshToken');
+      res.send();
     },
   ),
 );

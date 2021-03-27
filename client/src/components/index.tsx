@@ -5,3 +5,5 @@ export { default as FixedPageContainer } from './FixedPageContainer/FixedPageCon
 export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
 export { default as PublicRoute } from './PublicRoute/PublicRoute';
 export { default as CreatePartyButton } from './CreatePartyButton/CreatePartyButton';
+export { default as Input } from './Input/Input';
+export { default as Modal } from './Modal/Modal';

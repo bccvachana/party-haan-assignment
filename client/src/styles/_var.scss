@@ -5,6 +5,7 @@ $pageMinWidth: 320px;
 $pageMaxWidth: 480px;
 $headerHeight: 50px;
 $pagePadding: 1rem;
+$inputPadding: 24px;
 
 @mixin flex($direction: row, $justify: center, $align: center, $wrap: nowrap) {
   display: flex;

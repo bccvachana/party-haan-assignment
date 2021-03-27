@@ -1,6 +1,7 @@
 export const body: string;
 export const button: string;
 export const emailInput: string;
+export const form: string;
 export const inputContainer: string;
 export const inputLabel: string;
 export const loginButton: string;

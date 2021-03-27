@@ -1,5 +1,16 @@
 @import 'styles/_var';
 
 .body {
-  @include flex(column, flex-start);
+  @include flex(column);
+}
+
+.button {
+  width: 100%;
+  max-width: 220px;
+  height: 42px;
+  margin-top: 20px;
+  background-color: $color-primary;
+  color: $color-white;
+  border-radius: 42px;
+  font-size: 16px;
 }

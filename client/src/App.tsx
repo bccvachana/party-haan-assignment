@@ -1,9 +1,11 @@
 import { FC } from 'react';
 import { map } from 'lodash/fp';
 import {
-  BrowserRouter as Router, Switch,
+  BrowserRouter as Router, Switch, Redirect,
 } from 'react-router-dom';
-import { Header, PrivateRoute, PublicRoute } from 'components';
+import {
+  Header, Modal, PrivateRoute, PublicRoute,
+} from 'components';
 import { publicRoutes, privateRoutes } from 'routes';
 import { IRoute } from 'types/route.type';
 import 'styles/global.scss';
@@ -12,6 +14,7 @@ const App: FC = () => (
   <>
     <Router>
       <Header />
+      <Modal />
       <Switch>
         {map(({
           path,
@@ -40,12 +43,14 @@ const App: FC = () => (
         {map(({
           path,
           PageComponent,
+          redirectTo,
         }: IRoute) => (
           <PublicRoute
             path={path}
             exact
             key={path}
           >
+            {redirectTo && <Redirect to={redirectTo} />}
             {PageComponent && <PageComponent />}
           </PublicRoute>
         ), publicRoutes)}

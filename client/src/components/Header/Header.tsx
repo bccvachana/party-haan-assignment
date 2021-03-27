@@ -1,9 +1,10 @@
 import { usePage } from 'hooks';
 import { FC } from 'react';
 import { useHistory } from 'react-router-dom';
+import { FixedPageContainer } from 'components';
 import ArrowBackIcon from 'assets/images/arrow-back-icon.svg';
 import LogoutIcon from 'assets/images/logout-icon.svg';
-import { FixedPageContainer } from 'components';
+import userService from 'services/user.service';
 import styles from './Header.module.scss';
 
 const Header: FC = () => {
@@ -39,7 +40,7 @@ const Header: FC = () => {
             <button
               className={styles.logoutButton}
               type="button"
-              onClick={goBack}
+              onClick={userService.logout}
             >
               <img src={LogoutIcon} alt="logout-icon" />
             </button>

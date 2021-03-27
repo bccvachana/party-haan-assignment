@@ -41,7 +41,7 @@ const login = async (
   const accessToken = await generateAccessToken(user);
   const refreshToken = await generateRefreshToken(user);
   return {
-    user: omit('password', user),
+    user: omit(['password', 'created_at', 'updated_at'], user),
     accessToken,
     refreshToken,
   };

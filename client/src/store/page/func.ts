@@ -1,9 +1,13 @@
 import store from 'store';
 import {
-  setHeaderAction,
+  setHeaderAction, setModalAction,
 } from './actions';
-import { THeader } from './types';
+import { THeader, TModal } from './types';
 
 export const setHeader = (header: THeader) => {
   store.dispatch(setHeaderAction(header));
+};
+
+export const setModal = (modal: TModal) => {
+  store.dispatch(setModalAction(modal));
 };

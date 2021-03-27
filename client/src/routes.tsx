@@ -14,6 +14,10 @@ export const publicRoutes = [
     path: '/register',
     PageComponent: Register,
   },
+  {
+    path: '*',
+    redirectTo: '/login',
+  },
 ];
 
 export const privateRoutes = [

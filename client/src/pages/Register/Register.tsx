@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { PageContainer } from 'components';
+import { Input, PageContainer } from 'components';
 import { useHeader } from 'hooks';
 import styles from './Register.module.scss';
 
@@ -14,18 +14,9 @@ const Register: FC = () => {
       containerClassName={styles.pageContainer}
       bodyClassName={styles.body}
     >
-      <div className={styles.inputContainer}>
-        <div className={styles.inputLabel}>อีเมล</div>
-        <input />
-      </div>
-      <div className={styles.inputContainer}>
-        <div className={styles.inputLabel}>รหัสผ่าน</div>
-        <input />
-      </div>
-      <div className={styles.inputContainer}>
-        <div className={styles.inputLabel}>ยืนยันรหัสผ่าน</div>
-        <input />
-      </div>
+      <Input label="อีเมล" />
+      <Input label="รหัสผ่าน" />
+      <Input label="ยืนยันรหัสผ่าน" />
       <div className={styles.checkboxContainer}>
         <div className={styles.inputCheckbox}>
           <input type="checkbox" />

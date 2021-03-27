@@ -1,7 +1,5 @@
 @import 'styles/_var';
 
-$inputPadding: 20px;
-
 .pageContainer {
   background-color: $color-primary;
   color: $color-white;
@@ -24,9 +22,13 @@ $inputPadding: 20px;
   line-height: 1;
 }
 
-.inputContainer {
+.form {
   width: 100%;
   max-width: 340px;
+}
+
+.inputContainer {
+  width: 100%;
   position: relative;
 
   input,
@@ -34,7 +36,7 @@ $inputPadding: 20px;
   input:focus {
     width: 100%;
     height: 48px;
-    padding: 0 ($inputPadding + 2px);
+    padding: 0 ($inputPadding - 2px);
     background-color: transparent;
     border: 2px solid $color-white;
     border-radius: 48px;
@@ -44,7 +46,7 @@ $inputPadding: 20px;
     padding: 0 4px;
     position: absolute;
     top: -14px;
-    left: $inputPadding;
+    left: $inputPadding - 4px;
     background-color: $color-primary;
   }
 

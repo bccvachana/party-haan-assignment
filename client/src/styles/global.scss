@@ -40,6 +40,17 @@ html {
   button {
     cursor: pointer;
   }
+
+  input:-webkit-autofill {
+    &,
+    &:hover,
+    &:focus,
+    &:active {
+      box-shadow: none !important;
+      transition-delay: 9999s;
+      transition-property: background-color, color;
+    }
+  }
 }
 
 body {

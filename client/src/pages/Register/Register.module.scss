@@ -1,7 +1,5 @@
 @import 'styles/_var';
 
-$inputPadding: 20px;
-
 .pageContainer {
   padding-top: 50px;
 }
@@ -10,34 +8,11 @@ $inputPadding: 20px;
   @include flex(column, flex-start);
 }
 
-.inputContainer {
-  width: 100%;
-  max-width: 340px;
-  margin-bottom: 20px;
-
-  input,
-  input:hover,
-  input:focus {
-    width: 100%;
-    height: 48px;
-    padding: 0 ($inputPadding + 2px);
-    background-color: $color-white;
-    border: 2px solid #e9e9e9;
-    border-radius: 56px;
-  }
-
-  .inputLabel {
-    margin-bottom: 10px;
-    padding: 0 ($inputPadding + 4px);
-    line-height: 1;
-  }
-}
-
 .checkboxContainer {
   width: 100%;
   max-width: 340px;
   margin: 20px 0 30px;
-  padding: 0 ($inputPadding + 4px);
+  padding: 0 $inputPadding;
   @include flex(row, flex-start, flex-start);
 
   .inputCheckbox {

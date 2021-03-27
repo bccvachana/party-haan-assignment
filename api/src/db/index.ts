@@ -30,7 +30,7 @@ const execTransaction = async (
   } catch (err) {
     logger.info('something went wrong, rolling back.');
     await transactionPool.query('ROLLBACK');
-    logger.error(err);
+    throw err;
   } finally {
     transactionPool.release();
   }
