@@ -12,6 +12,7 @@ export type TPageActions = ActionType<typeof actions>;
 const initState: IPageStore = {
   header: initHeader,
   modal: initModal,
+  isPageLoading: true,
 };
 
 export default (
@@ -23,7 +24,10 @@ export default (
       return {
         ...state,
         header: {
-          ...initHeader,
+          title: '',
+          noBackButton: false,
+          noLogoutButton: false,
+          noHeader: false,
           ...action.payload as IHeader,
         },
       };
@@ -31,6 +35,11 @@ export default (
       return {
         ...state,
         modal: action.payload as IModal,
+      };
+    case ACTIONS_CONSTANT.SET_IS_PAGE_LOADING:
+      return {
+        ...state,
+        isPageLoading: action.payload as boolean,
       };
     default:
       return state;

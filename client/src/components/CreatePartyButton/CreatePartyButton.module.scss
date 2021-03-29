@@ -1,5 +1,9 @@
 @import 'styles/_var';
 
+.container {
+  z-index: 50 !important;
+}
+
 .createPartyButton {
   width: 52px;
   height: 52px;

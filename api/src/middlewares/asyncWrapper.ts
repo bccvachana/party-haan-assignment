@@ -10,9 +10,12 @@ export default (fn: Function) => async (
   try {
     await fn(req, res, next);
   } catch (err) {
-    console.log('err ::: ', err);
     logger.error(err);
-    res.status(err.metadata.status);
-    res.json({ message: stripAnsi(err.message) });
+    res
+      .status(err.metadata.status || 500)
+      .send({
+        code: err.metadata.status || 500,
+        message: stripAnsi(err.message),
+      });
   }
 };

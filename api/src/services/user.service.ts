@@ -1,14 +1,16 @@
+import bcryptjs from 'bcryptjs';
+import { PoolClient } from 'pg';
+import { get, isEmpty } from 'lodash/fp';
+import jwt from 'jsonwebtoken';
 import { UserLoginInput, UserRegisterInput } from '_dto';
 import { validateClassDTO } from '_helpers/classValidator';
 import { IUser, IUserInput } from '_types/user.type';
-import usersDb from '_db/users.db';
-import bcryptjs from 'bcryptjs';
-import db from '_db';
-import { PoolClient } from 'pg';
-import { isEmpty, omit } from 'lodash/fp';
 import { ApiError } from '_helpers/error';
-import { generateAccessToken, generateRefreshToken } from '_helpers/token';
+import db, { userPartyDb, usersDb } from '_db';
+import { generateAccessToken, generateKey, generateRefreshToken } from '_helpers/token';
 import { ICommonObject } from '_types/common.type';
+import { secretKey } from '_configs';
+import { isEqual } from 'lodash';
 
 const register = async (
   payload: IUserInput,
@@ -16,15 +18,18 @@ const register = async (
   const userRegisterInput: UserRegisterInput = new UserRegisterInput(payload);
   await validateClassDTO(userRegisterInput);
   const { email, password } = userRegisterInput;
-  db.execTransaction(async (transactionPool: PoolClient) => {
-    await usersDb.insert(
-      transactionPool,
-      {
-        email,
-        password: await bcryptjs.hash(password, 10),
-      },
-    );
-  });
+  const { error } = await db.execTransaction(
+    async (transactionPool: PoolClient) => {
+      await usersDb.create(
+        transactionPool,
+        {
+          email,
+          password: await bcryptjs.hash(password, 10),
+        },
+      );
+    },
+  );
+  if (error) throw error;
 };
 
 const login = async (
@@ -41,13 +46,34 @@ const login = async (
   const accessToken = await generateAccessToken(user);
   const refreshToken = await generateRefreshToken(user);
   return {
-    user: omit(['password', 'created_at', 'updated_at'], user),
     accessToken,
     refreshToken,
   };
 };
 
+const refreshToken = async (
+  reqRefreshToken: string,
+): Promise<ICommonObject> => {
+  const tokenPayload = jwt.verify(reqRefreshToken, secretKey);
+  const userResult = await usersDb.findById(get('id', tokenPayload));
+  if (isEmpty(userResult)) throw new ApiError('user not found', 400);
+  const user = userResult[0] as IUser;
+  const keyToCompare = await generateKey(user.id + user.password);
+  if (!isEqual(keyToCompare, get('key', tokenPayload))) {
+    throw new ApiError('invalid refresh token', 400);
+  }
+  return {
+    accessToken: await generateAccessToken(user),
+  };
+};
+
+const findParticipatedParty = async (
+  userId: number,
+): Promise<ICommonObject[]> => userPartyDb.findByUserId(userId);
+
 export default {
   register,
   login,
+  refreshToken,
+  findParticipatedParty,
 };

@@ -1,13 +1,21 @@
 import store from 'store';
+import { ICommonObject } from 'types/common.type';
 import {
   setUserAction,
+  setPaticipatedPartyAction,
 } from './actions';
-import { IUserStore } from './types';
+import { TUserStore } from './types';
 
-export const setUser = (user: IUserStore) => {
-  store.dispatch(setUserAction(user));
+export const setUser = (user: TUserStore) => {
+  store.dispatch(
+    setUserAction(user),
+  );
 };
 
-export const clearUser = () => {
-  store.dispatch(setUserAction(null));
+export const setParticipatedParty = (
+  paticipatedParty: ICommonObject,
+) => {
+  store.dispatch(
+    setPaticipatedPartyAction(paticipatedParty),
+  );
 };

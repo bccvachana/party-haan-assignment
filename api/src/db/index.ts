@@ -4,6 +4,7 @@ import { dbConfig } from 'configs';
 import { IQueryResult } from 'types/db.type';
 import logger from '_helpers/logger';
 import { ICommonObject } from '_types/common.type';
+import camelcaseKeys from 'camelcase-keys';
 
 import usersDb from './users.db';
 import partyDb from './party.db';
@@ -18,23 +19,24 @@ const query = (
 
 const execTransaction = async (
   callback: CallableFunction,
-): Promise<any> => {
+): Promise<{ result: any, error: Error; }> => {
   const transactionPool = await pool.connect();
   let result: any;
+  let error: any;
   try {
-    logger.info('start transacion.');
+    logger.info('start transacion');
     await transactionPool.query('BEGIN');
     result = await callback(transactionPool);
-    logger.info('end transaction.');
+    logger.info('end transaction');
     await transactionPool.query('COMMIT');
   } catch (err) {
-    logger.info('something went wrong, rolling back.');
+    logger.info('something went wrong, rolling back');
     await transactionPool.query('ROLLBACK');
-    throw err;
+    error = err;
   } finally {
     transactionPool.release();
   }
-  return result;
+  return { result, error };
 };
 
 const migrate = async (): Promise<void> => {
@@ -42,13 +44,15 @@ const migrate = async (): Promise<void> => {
     await usersDb.createTable(transactionPool);
     await partyDb.createTable(transactionPool);
     await userPartyDb.createTable(transactionPool);
-    logger.info('migrate successfully.');
+    logger.info('migrate successfully');
   });
 };
 
 const extractResult = (
   queryResult: IQueryResult,
-): ICommonObject[] => (queryResult ? queryResult.rows : []);
+): ICommonObject[] => (queryResult
+  ? camelcaseKeys(queryResult.rows, { deep: true })
+  : []);
 
 export default {
   query,

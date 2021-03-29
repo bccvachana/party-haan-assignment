@@ -1,9 +1,10 @@
-export { default as Header } from './Header/Header';
-export { default as Logo } from './Logo/Logo';
-export { default as PageContainer } from './PageContainer/PageContainer';
+export { default as CreatePartyButton } from './CreatePartyButton/CreatePartyButton';
 export { default as FixedPageContainer } from './FixedPageContainer/FixedPageContainer';
+export { default as Header } from './Header/Header';
+export { default as Input } from './Input/Input';
+export { default as Logo } from './Logo/Logo';
+export { default as Modal } from './Modal/Modal';
+export { default as PageContainer } from './PageContainer/PageContainer';
+export { default as PageLoading } from './PageLoading/PageLoading';
 export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
 export { default as PublicRoute } from './PublicRoute/PublicRoute';
-export { default as CreatePartyButton } from './CreatePartyButton/CreatePartyButton';
-export { default as Input } from './Input/Input';
-export { default as Modal } from './Modal/Modal';

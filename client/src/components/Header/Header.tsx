@@ -5,27 +5,22 @@ import { FixedPageContainer } from 'components';
 import ArrowBackIcon from 'assets/images/arrow-back-icon.svg';
 import LogoutIcon from 'assets/images/logout-icon.svg';
 import userService from 'services/user.service';
+import { get } from 'lodash/fp';
+import { openModal } from 'components/Modal';
 import styles from './Header.module.scss';
 
 const Header: FC = () => {
-  const {
-    header: {
-      title,
-      noBackButton,
-      noLogoutButton,
-      noHeader,
-    },
-  } = usePage();
+  const { header } = usePage();
   const { goBack } = useHistory();
 
-  return !noHeader ? (
+  return (header && !get('noHeader', header)) ? (
     <>
       <FixedPageContainer
         bodyClassName={styles.body}
       >
         <div className={styles.header}>
           <div className={styles.backButtonAndTitle}>
-            {!noBackButton && (
+            {!get('noBackButton', header) && (
               <button
                 className={styles.backButton}
                 type="button"
@@ -34,13 +29,22 @@ const Header: FC = () => {
                 <img src={ArrowBackIcon} alt="arrow-back-icon" />
               </button>
             )}
-            {title}
+            {get('title', header)}
           </div>
-          {!noLogoutButton && (
+          {!get('noLogoutButton', header) && (
             <button
               className={styles.logoutButton}
               type="button"
-              onClick={userService.logout}
+              onClick={() => {
+                openModal({
+                  type: 'info',
+                  text: 'คุณต้องการออกจากระบบใช่หรือไม่',
+                  okText: 'ยืนยัน',
+                  onOk: async () => {
+                    await userService.logout();
+                  },
+                });
+              }}
             >
               <img src={LogoutIcon} alt="logout-icon" />
             </button>

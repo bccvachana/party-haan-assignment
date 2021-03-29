@@ -15,7 +15,7 @@ const Modal: FC = () => {
       okText = 'ตกลง',
       cancelText = 'ยกเลิก',
       isCancel = true,
-      onOk = closeModal,
+      onOk = () => { },
       onCancal = closeModal,
     },
   } = usePage();
@@ -50,7 +50,10 @@ const Modal: FC = () => {
           <button
             className={styles.ok}
             type="button"
-            onClick={onOk}
+            onClick={() => {
+              onOk();
+              closeModal();
+            }}
           >
             {okText}
           </button>

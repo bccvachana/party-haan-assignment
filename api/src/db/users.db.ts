@@ -1,8 +1,8 @@
 import { PoolClient } from 'pg';
 import logger from '_helpers/logger';
-import { IUserInput } from '_types/user.type';
 import db from '_db';
 import { ICommonObject } from '_types/common.type';
+import { UserRegisterInput } from '_dto';
 
 export default {
   createTable: async (transactionPool: PoolClient): Promise<void> => {
@@ -16,9 +16,9 @@ export default {
       );
     `);
   },
-  insert: async (
+  create: async (
     transactionPool: PoolClient,
-    { email, password }: IUserInput,
+    { email, password }: UserRegisterInput,
   ): Promise<void> => {
     await transactionPool.query(`
       INSERT INTO USERS (
@@ -27,7 +27,7 @@ export default {
         NOW(), NOW(), $1, $2
       );
     `, [email, password]);
-    logger.info('insert user done.');
+    logger.info('create user done');
   },
   findByEmail: async (
     email: string,
@@ -35,6 +35,14 @@ export default {
     const result = await db.query(`
       SELECT * FROM USERS WHERE EMAIL ILIKE $1
     `, [email]);
+    return db.extractResult(result);
+  },
+  findById: async (
+    id: number,
+  ): Promise<ICommonObject[]> => {
+    const result = await db.query(`
+      SELECT * FROM USERS WHERE ID = $1
+    `, [id]);
     return db.extractResult(result);
   },
 };

@@ -4,7 +4,9 @@ import { FixedPageContainer } from 'components';
 import styles from './CreatePartyButton.module.scss';
 
 const CreatePartyButton: FC = () => (
-  <FixedPageContainer>
+  <FixedPageContainer
+    containerClassName={styles.container}
+  >
     <Link
       to="/party/create"
       className={styles.createPartyButton}

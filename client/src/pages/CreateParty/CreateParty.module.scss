@@ -4,6 +4,11 @@
   @include flex(column);
 }
 
+.form {
+  width: 100%;
+  @include flex(column, flex-start);
+}
+
 .button {
   width: 100%;
   max-width: 220px;
@@ -13,4 +18,10 @@
   color: $color-white;
   border-radius: 42px;
   font-size: 16px;
+  transition: all 0.3s ease-out;
+
+  &.disabled {
+    cursor: not-allowed;
+    background-color: $color-grey;
+  }
 }

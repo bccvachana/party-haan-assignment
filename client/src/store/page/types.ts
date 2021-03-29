@@ -23,6 +23,7 @@ export interface IModal {
 export type TModal = IModal | undefined;
 
 export interface IPageStore {
-  header: IHeader;
+  header: THeader;
   modal: IModal;
+  isPageLoading: boolean;
 }

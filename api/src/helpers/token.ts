@@ -11,18 +11,14 @@ export const generateKey = async (
 ).toString();
 
 export const generateAccessToken = async (
-  { id }: IUser,
-): Promise<string> => jwt.sign({
-  type: 'access',
-  userId: id,
-}, secretKey, {
+  { id, email }: IUser,
+): Promise<string> => jwt.sign({ id, email }, secretKey, {
   expiresIn: 15 * 60, // 15 mins
 });
 
 export const generateRefreshToken = async (
   { id, password }: IUser,
 ): Promise<string> => jwt.sign({
-  type: 'refresh',
-  userId: id,
+  id,
   key: await generateKey(id + password),
 }, secretKey);

@@ -9,3 +9,7 @@ export const setHeaderAction = (
 export const setModalAction = (
   modal: TModal,
 ) => action(ACTIONS_CONSTANT.SET_MODAL, modal);
+
+export const setIsPageLoadingAction = (
+  isPageLoading: boolean,
+) => action(ACTIONS_CONSTANT.SET_IS_PAGE_LOADING, isPageLoading);
